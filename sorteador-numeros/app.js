@@ -1,70 +1,64 @@
-//Iniciar
-
-//Variaveis
-
-let numerosSorteados = [];
-let textoSingular = 'O numero sorteado foi: ';
-let textoPlural = 'Os numeros sorteados foram: ';
-
-//Funções
+// Funções
 
 function sortear() {
-    let numerosSorteados = [];
-    let quantidade = parseInt(document.getElementById('quantidade').value);
-    let min = parseInt(document.getElementById('de').value);
-    let max = parseInt(document.getElementById('ate').value);
-   
+    const quantidade = parseInt(document.getElementById('quantidade').value);
+    const min = parseInt(document.getElementById('de').value);
+    const max = parseInt(document.getElementById('ate').value);
+
     if (quantidade > (max - min + 1)) {
         alert("Erro: A quantidade de números solicitada é maior do que o intervalo disponível.");
         return;
-    };
-   
-    while (quantidade > 0) {
-        let numeroAleatorio = Math.floor(Math.random() * (max - min + 1)) + min;
-        if (numerosSorteados.includes(numeroAleatorio)) {
-            continue;
-        };
-        numerosSorteados.push(numeroAleatorio);
-        quantidade--;
-    };
-    console.log(numerosSorteados);
-    botaoAtivo();
-    if (numerosSorteados.length == 1) {
-        exibirTexto('.texto__paragrafo__final',`${textoSingular}${numerosSorteados}`);
-    } else {
-        exibirTexto('.texto__paragrafo__final',`${textoPlural}${numerosSorteados}`);
+    }
 
-    };
-};
+    const numerosSorteados = [];
+    while (numerosSorteados.length < quantidade) {
+        const numeroAleatorio = Math.floor(Math.random() * (max - min + 1)) + min;
+        if (!numerosSorteados.includes(numeroAleatorio)) {
+            numerosSorteados.push(numeroAleatorio);
+        }
+    }
+
+    numerosSorteados.sort((a,b) => a - b);
+
+    alterarEstadoBotao('ativar');
+    const textoBase = numerosSorteados.length === 1 
+        ? `O número sorteado foi: ${numerosSorteados}` 
+        : `Os números sorteados foram: ${numerosSorteados}`;
+    exibirTexto('.texto__paragrafo__final', textoBase);
+}
 
 function reiniciar() {
-    botaoDesativo();
-    limparCampo();
-    exibirTexto('.texto__paragrafo__final', `Os numeros ainda nao foram sorteados.`);
+    alterarEstadoBotao('desativar');
+    limparCampos();
+    exibirTexto('.texto__paragrafo__final', "Os números ainda não foram sorteados.");
 }
 
-function limparCampo() {
-    document.getElementById('quantidade').value = '';
-    document.getElementById('de').value = '';
-    document.getElementById('ate').value = '';
+function limparCampos() {
+    ['quantidade', 'de', 'ate'].forEach(id => document.getElementById(id).value = '');
 }
 
-function botaoAtivo() {
-    let botao = document.getElementById('btn-reiniciar');
-    botao.classList.remove('container__botao-desabilitado');
-    botao.classList.add('container__botao');
-};
+function alterarEstadoBotao(acao) {
+    const botao = document.getElementById('btn-reiniciar');
+    const estadoAtivo = 'container__botao';
+    const estadoDesativado = 'container__botao-desabilitado';
 
-function botaoDesativo() {
-    let botao = document.getElementById('btn-reiniciar');
-    botao.classList.remove('container__botao');
-    botao.classList.add('container__botao-desabilitado');
-};
+    if (acao === 'ativar') {
+        botao.classList.add(estadoAtivo);
+        botao.classList.remove(estadoDesativado);
+    } else if (acao === 'desativar') {
+        botao.classList.add(estadoDesativado);
+        botao.classList.remove(estadoAtivo);
+    }
+}
 
 function exibirTexto(seletor, novoTexto) {
     const elemento = document.querySelector(seletor);
-    elemento.innerHTML = novoTexto;
-};
+    if (elemento) {
+        elemento.textContent = novoTexto;
+    } else {
+        console.warn(`Elemento com o seletor "${seletor}" não encontrado.`);
+    }
+}
 
-//TextoHTML
-exibirTexto('.texto__paragrafo__final', `Os numeros ainda nao foram sorteados.`);
+// Inicialização do texto padrão
+exibirTexto('.texto__paragrafo__final', "Os números ainda não foram sorteados.");
