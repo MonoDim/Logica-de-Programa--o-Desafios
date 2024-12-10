@@ -130,6 +130,15 @@ h1 {
     line-height: normal;
 }
 
+.texto__paragrafo__final {
+    color: #FFF;
+    font-family: 'Inter';
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
 .container__imagem-pessoa {
     max-width: 100%;
     height: auto;
