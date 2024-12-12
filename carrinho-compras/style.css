@@ -54,7 +54,7 @@ input[type="number"] {
   grid-template-columns: 1.375fr 1fr;
   column-gap: 5rem;
 
-  background: white url('./assets/oculos.png') no-repeat bottom left;
+  background: white url('./assets/celular.png') no-repeat bottom left;
   background-size: auto 40%;
 
   position: relative;
