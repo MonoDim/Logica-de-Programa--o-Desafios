@@ -23,7 +23,7 @@ function selecionar() {
     const { quantidade, nome, preco } = nomePrecoQuant();
     if (validarQuantidade(quantidade)) return;
 
-    exibirTexto('span.texto-medio-azul-abaixo', `${quantidade}x ${nome}`);
+    exibirTexto('span.texto-medio-azul-abaixo', `Qtde.`);
 
     carrinho = adicionarCarrinho(quantidade, nome, preco, carrinho);
     valorTotal += preco * quantidade;
@@ -34,7 +34,6 @@ function selecionar() {
 function limpar() {
     valorTotal = 0;
     carrinho = [];
-    console.log(carrinho);
     atualizarValorTotal();
     limparListaProdutos();
 }
