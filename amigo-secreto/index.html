@@ -7,12 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch&family=Inter&display=swap" rel="stylesheet">
-  <link href="
-https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css
-" rel="stylesheet" />
-  <link href="
-https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css
-" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css" rel="stylesheet" />
   <title>Amigo Secreto</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -25,7 +21,8 @@ https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css
       <div class="content__main">
         <section>
           <h1 class="section__title">Amigo <span>Secreto</span></h1>
-          <form class="form">
+          <!-- Formulário para entrada de dados -->
+          <form class="form" onsubmit="return false;">
             <label class="form__label">
               Digite o nome de um amigo
             </label>
@@ -38,12 +35,14 @@ https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css
           </form>
         </section>
         <section class="section--results">
+          <!-- Exibe a lista de amigos adicionados -->
           <article>
             <p class="friends__title">Amigos incluídos</p>
             <div class="friends__container">
               <p id="lista-amigos"></p>
             </div>
           </article>
+          <!-- Exibe o resultado do sorteio -->
           <article>
             <p class="prizeDraw__title">Sorteio</p>
             <div class="prizeDraw__container">
@@ -55,8 +54,8 @@ https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css
     </div>
   </main>
   <div class="background__detail">
-
     <script src="js/app.js"></script>
+  </div>
 </body>
 
 </html>
