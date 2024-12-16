@@ -17,3 +17,5 @@ const nomes = [ ];
 function sortear() {
     console.log(pares(nomes));
 }
+
+//--Teste
